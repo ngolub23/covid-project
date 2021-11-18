@@ -1,4 +1,7 @@
 import React from 'react'
+import SympUpdate from './views/forms/sympupdate'
+import NewCase from './views/forms/newcase'
+import ResultUpdate from './views/forms/resultupdate'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -33,8 +36,8 @@ const Layout = React.lazy(() => import('./views/forms/layout/Layout'))
 const Range = React.lazy(() => import('./views/forms/range/Range'))
 const Select = React.lazy(() => import('./views/forms/select/Select'))
 const Validation = React.lazy(() => import('./views/forms/validation/Validation'))
-
 const Charts = React.lazy(() => import('./views/charts/Charts'))
+//const FormControl = React.lazy(() => import('./views/forms/form-control/FormControl'))
 
 // Icons
 const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'))
@@ -93,6 +96,9 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/notifications/toasts', name: 'Toasts', component: Toasts },
   { path: '/widgets', name: 'Widgets', component: Widgets },
+  { path: '/forms/sympupdate', name: 'SympUpdate', component: SympUpdate },
+  { path: '/forms/newcase', name: 'NewCase', component: NewCase },
+  { path: '/forms/resultupdate', name: 'NewCase', component: ResultUpdate },
 ]
 
 export default routes

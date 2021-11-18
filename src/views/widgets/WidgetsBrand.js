@@ -72,9 +72,9 @@ const WidgetsBrand = ({ withCharts }) => {
         />
       </CCol> */}
 
-      <CCol sm={6} lg={3}>
+      {/* <CCol sm={6} lg={3}>
         <CWidgetStatsD
-          /*className="mb-4"
+          className="mb-4"
           {...(withCharts && {
             chart: (
               <CChart
@@ -97,16 +97,16 @@ const WidgetsBrand = ({ withCharts }) => {
               />
             ),
           })}
-          //icon={<CIcon icon={cibTwitter} height={52} className="my-4 text-white" />}
-          /*values={[
+          icon={<CIcon icon={cibTwitter} height={52} className="my-4 text-white" />}
+          values={[
             { title: 'followers', value: '973k' },
             { title: 'tweets', value: '1.792' },
-          ]}--cui-card-cap-bg': '#99aced*/
+           }--cui-card-cap-bg': '#99aced
           style={{
             '--cui-card-cap-bg': '#99aced',
           }}
         />
-      </CCol>
+      </CCol> */}
 
       {/* <CCol sm={6} lg={3}>
         <CWidgetStatsD

@@ -5,7 +5,7 @@
 // Color system
 
 // scss-docs-start gray-color-variables
-// $white:     #fff !default;
+ $white:     #fff !default;
 // $gray-base: #3c4b64 !default;
 // $gray-100:  #ebedef !default;
 // $gray-200:  #d8dbe0 !default;
@@ -343,7 +343,7 @@
 //
 // Style anchor elements.
 
-// $link-color:                              $primary !default;
+ $link-color:                              $white !default;
 // $link-decoration:                         underline !default;
 // $link-shade-percentage:                   20% !default;
 // $link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;

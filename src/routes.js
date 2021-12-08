@@ -2,6 +2,7 @@ import React from 'react'
 import SympUpdate from './views/forms/sympupdate'
 import NewCase from './views/forms/newcase'
 import ResultUpdate from './views/forms/resultupdate'
+import ReturnStatus from './views/forms/returnstatus'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -99,6 +100,7 @@ const routes = [
   { path: '/forms/sympupdate', name: 'SympUpdate', component: SympUpdate },
   { path: '/forms/newcase', name: 'NewCase', component: NewCase },
   { path: '/forms/resultupdate', name: 'NewCase', component: ResultUpdate },
+  { path: '/forms/returnstatus', name: 'NewCase', component: ReturnStatus },
 ]
 
 export default routes

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
   CButton,
   CCard,
@@ -18,11 +18,37 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CForm
 } from '@coreui/react'
 import { DocsCallout, DocsExample } from 'src/components'
+import axios from 'axios'
 
-const ResultUpdate = () => {
+function ResultUpdate() 
+ {
+  const [validated, setValidated] = useState(false);
+  const [negative, setPositive] = useState();
+  const [positive, setNegative] = useState();
+
+
+
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget
+    console.log(form);
+    axios.post(process.env.REACT_APP_LOCALHOST_API + "NewResult", {
+      positive,
+      negative
+    })
+    
+    console.log(event);
+    if (form.checkValidity() === false) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    setValidated(true)
+  }
   return (
+    <CForm validated={validated} onSubmit={handleSubmit}>
     <CRow>
       {/* <CCol xs={12}>
         <DocsCallout name="Input Group" href="forms/input-group" />
@@ -494,8 +520,18 @@ const ResultUpdate = () => {
             <strong>Select most recent COVID test result: </strong>
           </CCardHeader>
           <CCardBody>
-            <CFormCheck id="flexCheckDefault" label="Positive" />
-            <CFormCheck id="flexCheckDefault" label="Negative" />
+            <CFormCheck   type="checkbox" 
+              id="positive" 
+              label="Positive"               
+              onChange={(e) => {
+                setPositive(e.target.id);
+                       }} />
+            <CFormCheck   type="checkbox" 
+              id="negative" 
+              label="Negative"               
+              onChange={(e) => {
+                setNegative(e.target.id);
+                       }}/>
           </CCardBody>
         </CCard>
       </CCol>
@@ -600,7 +636,7 @@ const ResultUpdate = () => {
       </CCol>
       <CButton component="input" type="submit" color="primary" value="Submit" />
     </CRow>
-    
+    </CForm>
   )
 }
 

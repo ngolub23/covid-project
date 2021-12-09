@@ -1,9 +1,43 @@
-import React from 'react'
-import { CCard, CButton, CCardBody, CCardHeader, CCol, CFormSelect, CRow } from '@coreui/react'
-import { DocsCallout, DocsExample } from 'src/components'
+import React, {useState} from 'react'
+import { CCard, CButton, CCardBody, CCardHeader, CCol, CForm, CFormSelect, CFormCheck, CFormSwitch, CRow } from '@coreui/react'
+import axios from 'axios'
 
-const NewCase = () => {
+
+
+function NewCase() 
+ {
+  const [validated, setValidated] = useState(false);
+  const [exposure, setExposure] = useState();
+  const [vaccinated, setVaccinated] = useState();
+  const [symptoms, setSymptoms] = useState();
+  const [continuous, setContinuous ] = useState();
+
+
+
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget
+    console.log(form);
+    console.log(exposure);
+    axios.post(process.env.REACT_APP_LOCALHOST_API + "NewCase", {
+      exposure,
+      vaccinated,
+      symptoms,
+      continuous
+    })
+    
+    console.log(event);
+    if (form.checkValidity() === false) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    setValidated(true)
+    
+      
+    
+  }
   return (
+    <CForm validated={validated} onSubmit={handleSubmit}>
     <CRow>
       {/* <CCol xs={12}>
         <DocsCallout name="Form Select" href="forms/select" />
@@ -14,18 +48,34 @@ const NewCase = () => {
             <strong>To start a new case, select your response from the dropdown menus below</strong>
           </CCardHeader>
           <CCardBody>
-            <CFormSelect aria-label="Default select example">
+            <CFormSelect aria-label="Default select example" 
+              id="exposure" 
+              label="Exposure"               
+              onChange={(e) => {
+                setExposure(e.target.value);
+                       }}>
               <option>Select reason for new case</option>
               <option value="1">Exposure to someone who tested positive for COVID</option>
               <option value="2">You had a positive COVID result</option>
+              
               {/* <option value="3">Three</option> */}
             </CFormSelect>
-            <CFormSelect aria-label="Default select example">
+            <CFormSelect aria-label="Default select example"
+            id="vaccinated" 
+            label="Vaccinated"               
+            onChange={(e) => {
+              setVaccinated(e.target.value);
+                     }}>
               <option>Select vaccination status</option>
               <option value="1">Vaccinated</option>
               <option value="2">Not Vaccinated</option>
             </CFormSelect>
-            <CFormSelect aria-label="Default select example">
+            <CFormSelect aria-label="Default select example"
+            id="symptoms" 
+            label="Symptoms"               
+            onChange={(e) => {
+              setSymptoms(e.target.value);
+                     }}>
               <option>Select if symptoms present</option>
               <option value="1">Yes, symptoms present</option>
               <option value="2">No symptoms present</option>
@@ -47,7 +97,12 @@ const NewCase = () => {
             <strong>If new case due to EXPOSURE, select if it is continuous exposure</strong>
           </CCardHeader>
           <CCardBody>
-            <CFormSelect aria-label="Default select example">
+            <CFormSelect aria-label="Default select example"
+            id="continuous" 
+            label="Continuous"               
+            onChange={(e) => {
+              setContinuous(e.target.value);
+                     }}>
               <option>Select if continuous exposure</option>
               <option value="1">Yes, continuous exposure</option>
               <option value="2">No, isolated exposure</option>
@@ -128,7 +183,9 @@ const NewCase = () => {
       </CCol> */}
       <CButton component="input" type="submit" color="primary" value="Submit" />
     </CRow>
+    </CForm>
   )
 }
+ 
 
 export default NewCase
